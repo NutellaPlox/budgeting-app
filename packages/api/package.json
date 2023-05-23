@@ -1,0 +1,17 @@
+{
+  "name": "@my/api",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "private": true,
+  "dependencies": {
+    "@trpc/client": "10.9.0",
+    "@trpc/server": "10.9.0",
+    "db": "*",
+    "superjson": "^1.9.1",
+    "zod": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4"
+  }
+}
