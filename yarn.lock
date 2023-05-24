@@ -3145,7 +3145,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@my/api@workspace:packages/api"
   dependencies:
+    "@tanstack/react-query": 4.22.0
     "@trpc/client": 10.9.0
+    "@trpc/next": 10.9.0
+    "@trpc/react-query": 10.9.0
     "@trpc/server": 10.9.0
     db: "*"
     eslint: ^8.28.0
@@ -5107,6 +5110,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:4.22.0":
+  version: 4.22.0
+  resolution: "@tanstack/query-core@npm:4.22.0"
+  checksum: d24c13f8e21b65380230055a6673ae670aca5ee550c2f9a24b89fd3ac5243b465bb25f61b29da8ca285fc7fb0f4c2f8add3864f742eafac5131e777f3e52767a
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:4.22.0":
+  version: 4.22.0
+  resolution: "@tanstack/react-query@npm:4.22.0"
+  dependencies:
+    "@tanstack/query-core": 4.22.0
+    use-sync-external-store: ^1.2.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-native: "*"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: b146774b44a79dd5a6412d981ce04790e66da5a36f907a03c85c36f50a38fb4e4dfbfca7b1561c86b39fb0df1c0c1ae0a0ef2930c06b444da3f430b9bad450f1
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -5127,6 +5156,36 @@ __metadata:
   peerDependencies:
     "@trpc/server": 10.9.0
   checksum: 6f7ed55a98089b356befd3af68f04375f0bf75cff7df1488c7ce5021c7d1278b048756f89dcddd2a624e8fb191395e978580caa9852b56a2b7b46274a01c74ec
+  languageName: node
+  linkType: hard
+
+"@trpc/next@npm:10.9.0":
+  version: 10.9.0
+  resolution: "@trpc/next@npm:10.9.0"
+  dependencies:
+    react-ssr-prepass: ^1.5.0
+  peerDependencies:
+    "@tanstack/react-query": ^4.3.8
+    "@trpc/client": 10.9.0
+    "@trpc/react-query": ^10.8.0
+    "@trpc/server": 10.9.0
+    next: "*"
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 49075ee23bcf30cb71e22c30b1beaf997120592057ddc1c267b8783a43444eb2921cace28384a571f83dbad84cbf9ad9813c17326fc807a653cd9d88c0dc55d5
+  languageName: node
+  linkType: hard
+
+"@trpc/react-query@npm:10.9.0":
+  version: 10.9.0
+  resolution: "@trpc/react-query@npm:10.9.0"
+  peerDependencies:
+    "@tanstack/react-query": ^4.3.8
+    "@trpc/client": 10.9.0
+    "@trpc/server": 10.9.0
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: f39de701dee38f32796c185b855a84bf8df9b6ccc45ab337cd58d77a2ab5bd434e5c6f459fc266ac6d98422d01f0700728b99f77ee6587a217fa2e59e74f99d0
   languageName: node
   linkType: hard
 
@@ -16408,6 +16467,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-ssr-prepass@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "react-ssr-prepass@npm:1.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: efe89b9f8b2053474613f56dfdbeb41d8ee2e572bf819a39377d95d3e4a9acf8a4a16e28d8d8034cb9ac2b316d11dc9e62217743e4322046d08175eb3b4fed3e
+  languageName: node
+  linkType: hard
+
 "react-style-singleton@npm:^2.2.1":
   version: 2.2.1
   resolution: "react-style-singleton@npm:2.2.1"
@@ -19335,7 +19403,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.0.0":
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.0.0, use-sync-external-store@npm:^1.2.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:

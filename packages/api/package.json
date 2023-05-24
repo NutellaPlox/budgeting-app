@@ -4,7 +4,10 @@
   "main": "index.ts",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "4.22.0",
     "@trpc/client": "10.9.0",
+    "@trpc/next": "10.9.0",
+    "@trpc/react-query": "10.9.0",
     "@trpc/server": "10.9.0",
     "db": "*",
     "superjson": "^1.9.1",

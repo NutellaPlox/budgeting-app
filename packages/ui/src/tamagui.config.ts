@@ -5,6 +5,7 @@ import { themes, tokens } from '@tamagui/themes'
 import { createMedia } from '@tamagui/react-native-media-driver'
 
 import { animations } from './animations'
+import { customThemes } from './themes'
 
 const headingFont = createInterFont({
   size: {
@@ -59,7 +60,7 @@ export const config = createTamagui({
     heading: headingFont,
     body: bodyFont,
   },
-  themes,
+  themes: customThemes,
   tokens,
   media: createMedia({
     xs: { maxWidth: 660 },
