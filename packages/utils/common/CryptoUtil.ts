@@ -1,26 +1,58 @@
-import { DervieKeyReturnType } from './types/CryptoUtilTypes'
+import { DeriveKeyReturnType, DerivePwKeyReturnType } from '../types/CryptoUtilTypes'
 import _sodium from 'libsodium-wrappers-sumo'
 
-const protocolLatest = 'v1'
-const additionalData = JSON.stringify({ protocol: protocolLatest })
+const argon2Params = {
+  memLimit: 67108864, // 64 mb
+  bytesLength: 64, // 512 bits
+  saltBytes: 16,
+  opsLimit: 5,
+}
 
-export const derive_key = async (password: string): Promise<DervieKeyReturnType> => {
+const protocolLatest = 'v1'
+export const protocolVersion = protocolLatest
+
+export const derive_key = async (
+  input: string,
+  additionalData: string = protocolLatest
+): Promise<DeriveKeyReturnType> => {
   await _sodium.ready
   const sodium = _sodium
 
-  // Argon2 params
-  const memLimit = 67108864 // 64 mb
-  const bytesLength = 64 // 512 bits
-  const pwBuffer = sodium.from_string(password)
+  const inputBuffer = sodium.from_string(`${input}${additionalData}`)
   const salt = sodium.randombytes_buf(16)
-  const opsLimit = 5
 
   const key = sodium.crypto_pwhash(
-    bytesLength,
+    argon2Params.bytesLength,
+    inputBuffer,
+    salt,
+    argon2Params.opsLimit,
+    argon2Params.memLimit,
+    sodium.crypto_pwhash_ALG_ARGON2ID13,
+    'uint8array'
+  )
+
+  const saltString = sodium.to_base64(salt, sodium.base64_variants.URLSAFE_NO_PADDING)
+  const keyString = sodium.to_base64(key, sodium.base64_variants.URLSAFE_NO_PADDING)
+
+  return {
+    salt: saltString,
+    key: keyString,
+  }
+}
+
+export const derive_pw_key = async (password: string): Promise<DerivePwKeyReturnType> => {
+  await _sodium.ready
+  const sodium = _sodium
+
+  const pwBuffer = sodium.from_string(password)
+  const salt = sodium.randombytes_buf(16)
+
+  const key = sodium.crypto_pwhash(
+    argon2Params.bytesLength,
     pwBuffer,
     salt,
-    opsLimit,
-    memLimit,
+    argon2Params.opsLimit,
+    argon2Params.memLimit,
     sodium.crypto_pwhash_ALG_ARGON2ID13,
     'uint8array'
   )
@@ -39,7 +71,11 @@ export const derive_key = async (password: string): Promise<DervieKeyReturnType>
   }
 }
 
-export const crypto_encrypt = async (message: string, key: string): Promise<string> => {
+export const crypto_encrypt = async (
+  message: string,
+  key: string,
+  additionalData: string = protocolLatest
+): Promise<string> => {
   await _sodium.ready
   const sodium = _sodium
 
@@ -66,7 +102,11 @@ export const crypto_encrypt = async (message: string, key: string): Promise<stri
   return `${nonceString}:${cipherString}`
 }
 
-export const crypto_decrypt = async (cipherString: string, key: string): Promise<string> => {
+export const crypto_decrypt = async (
+  cipherString: string,
+  key: string,
+  additionalData: string = protocolLatest
+): Promise<string> => {
   await _sodium.ready
   const sodium = _sodium
 

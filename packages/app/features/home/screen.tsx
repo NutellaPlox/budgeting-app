@@ -13,7 +13,7 @@ import {
   useTheme,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import * as CryptoUtil from '@my/utils/CryptoUtil'
+import * as CryptoUtil from '@my/utils/common/CryptoUtil'
 import { trpc } from 'app/trpc'
 import React, { useState } from 'react'
 import { useLink } from 'solito/link'
@@ -30,7 +30,7 @@ export function HomeScreen() {
   })
 
   const test = async () => {
-    const keyInfo = await CryptoUtil.derive_key('test')
+    const keyInfo = await CryptoUtil.derive_pw_key('test')
     setKey(keyInfo.masterKey)
   }
 
