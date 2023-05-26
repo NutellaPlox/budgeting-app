@@ -1,8 +1,8 @@
-import { DervieKeyReturnType } from 'app/types/CryptoUtilTypes'
+import { DervieKeyReturnType } from './types/CryptoUtilTypes'
 import _sodium from 'libsodium-wrappers-sumo'
 
 const protocolLatest = 'v1'
-const additionalData = JSON.stringify({ protocolLatest })
+const additionalData = JSON.stringify({ protocol: protocolLatest })
 
 export const derive_key = async (password: string): Promise<DervieKeyReturnType> => {
   await _sodium.ready
@@ -13,7 +13,7 @@ export const derive_key = async (password: string): Promise<DervieKeyReturnType>
   const bytesLength = 64 // 512 bits
   const pwBuffer = sodium.from_string(password)
   const salt = sodium.randombytes_buf(16)
-  const opsLimit = 3
+  const opsLimit = 5
 
   const key = sodium.crypto_pwhash(
     bytesLength,

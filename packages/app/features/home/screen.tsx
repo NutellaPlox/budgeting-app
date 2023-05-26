@@ -13,8 +13,8 @@ import {
   useTheme,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import * as CryptoUtil from 'app/utils/CryptoUtils'
-import { trpc } from 'app/utils/trpc'
+import * as CryptoUtil from '@my/utils/CryptoUtil'
+import { trpc } from 'app/trpc'
 import React, { useState } from 'react'
 import { useLink } from 'solito/link'
 

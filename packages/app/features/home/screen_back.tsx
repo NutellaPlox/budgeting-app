@@ -11,7 +11,7 @@ import {
   useToastController,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { trpc } from 'app/utils/trpc'
+import { trpc } from 'app/trpc'
 import React, { useState } from 'react'
 import { useLink } from 'solito/link'
 

@@ -8,7 +8,7 @@ import { Provider } from 'app/provider'
 import Head from 'next/head'
 import React from 'react'
 import type { SolitoAppProps } from 'solito'
-import { trpc } from 'app/utils/trpc.web'
+import { trpc } from 'app/trpc/trpc.web'
 
 if (process.env.NODE_ENV === 'production') {
   require('../public/tamagui.css')
