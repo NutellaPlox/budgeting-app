@@ -29,7 +29,7 @@
     "types": ["node"],
     "lib": ["dom", "esnext"]
   },
-  "exclude": ["_"],
+  "exclude": ["_", "__tests__"],
   "typeAcquisition": {
     "enable": true
   }
