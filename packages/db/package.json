@@ -2,7 +2,30 @@
   "name": "@my/db",
   "version": "0.1.0",
   "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "prettier --check ./src/ && tsc --noEmit",
+    "db:start": "docker run --name budget-db --env MARIADB_USER=mysql --env MARIADB_DATABASE=budgeting_app --env MARIADB_PASSWORD=budgeting --env MARIADB_ROOT_PASSWORD=budgetingAPP -p 3304:3306 -d mariadb:latest",
+    "db:stop": "docker stop budget-db",
+    "db:remove": "docker rm budget-db",
+    "db:reset": "yarn db:stop && yarn db:remove && yarn db:start",
+    "db:generate": "npx drizzle-kit generate:mysql --out src/database/migrations --schema src/database/*",
+    "db:push": "npx drizzle-kit push:mysql"
+  },
   "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "drizzle-kit": "^0.18.1",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@my/utils": "*",
+    "@planetscale/database": "^1.7.0",
+    "drizzle-orm": "^0.26.1",
+    "mysql2": "^3.3.2"
   }
 }
